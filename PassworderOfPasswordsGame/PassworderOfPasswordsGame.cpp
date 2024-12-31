@@ -10,15 +10,19 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
-#include <cmath>
+//#include <cmath>
+#include <cstdio>
 #include <string>
-#include <assert.h>
-#include <time.h>
-#include <string>
+//#include <assert.h>
+//#include <time.h>
+//#include <mciapi.h>
+
 #include <shlobj.h>
 #include <stdio.h>
 #include <filesystem>
 #include <Windows.h>   //where the compile errors happen on wandbox
+#pragma comment(lib, "Winmm.lib")
+#include <mmsystem.h>
 
 namespace boring = std;
 
@@ -27,12 +31,19 @@ std::string password{};     //waits for user input
 
 int main()
 {
+
+    //PlaySound(TEXT("RooftopRun.mp3"), NULL, SND_FILENAME | SND_ASYNC);
+    mciSendString("open \"RooftopRun.mp3\" type mpegvideo alias mp3", NULL, 0, NULL);
+    mciSendString("play mp3 repeat", NULL, 0, NULL);
+
+
+
     char documentsPath[MAX_PATH];
 
     //CreateDirectory (L"...\\Documents\\PASSWORDS", NULL);
     if (SUCCEEDED(SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, 0, documentsPath))) {
         // Append the folder name to the path
-        std::string dirPath = std::string(documentsPath) + "\\testerofpasswords";
+        std::string dirPath = std::string(documentsPath) + "\\PASSWORDSER";
 
         // Attempt to create the directory
         if (CreateDirectory(dirPath.c_str(), NULL) || ERROR_ALREADY_EXISTS == GetLastError()) {
@@ -45,7 +56,7 @@ int main()
                 file1.close();
             }
             else {
-                std::cerr << "YO, A MAJOR FILE [[HEH.txt]] FAILED TO OPEN. MAYBE REOPEN?!?!?!?" << std::endl;
+                std::cerr << "YO, A MAJOR FILE [[HEH.txt]] FAILED TO OPEN. MAYBE REOPEN THE PROGRAM?!?!?!?" << std::endl;
             }
 
             // Create and write to the second file
@@ -55,7 +66,23 @@ int main()
                 file2.close();
             }
             else {
-                std::cerr << "YO, A MAJOR FILE [[STUPIDBIGSTUPID.txt]] FAILED TO OPEN. MAYBE REOPEN?!?!?!?" << std::endl;
+                std::cerr << "YO, A MAJOR FILE [[STUPIDBIGSTUPID.txt]] FAILED TO OPEN. MAYBE REOPEN THE PROGRAM?!?!?!?" << std::endl;
+            }
+            std::ofstream file3(dirPath + "\\THEPASSWORD.txt");
+            if (file3.is_open()) {
+                file3 << "BRO. YOU IDIOT. YOU ACTUALLY THOUGHT THIS WAS IT??? DIG THROUGH MORE OF THE TEXT FILES YOU DING DONG!!!";
+                file3.close();
+            }
+            else {
+                std::cerr << "YO, A MAJOR FILE [[THEPASSWORD.txt]] FAILED TO OPEN. MAYBE REOPEN THE PROGRAM?!?!?!?" << std::endl;
+            }
+            std::ofstream file4(dirPath + "\\HEHMAYBETHISISIT.txt");
+            if (file4.is_open()) {
+                file4 << "TOP 10 EPIC FAILS: THIS IDIOT THINKING THE PASSWORD IS IN THIS!!!! HEH!!!";
+                file4.close();
+            }
+            else {
+                std::cerr << "YO, A MAJOR FILE [[HEHMAYBETHISISIT.txt]] FAILED TO OPEN. MAYBE REOPEN THE PROGRAM?!?!?!?" << std::endl;
             }
         }
         else {
@@ -78,6 +105,7 @@ int main()
         std::cout << "String Worked Successfully!" << std::endl;
         std::cout << "Find the folder and text files to continue on." << std::endl;
         system("pause");         //thank you forums for some code snippets!!
+        mciSendString("close mp3", NULL, 0, NULL);
         return EXIT_SUCCESS;
     }
     if (password == "kevin" || password == "KEVIN")
