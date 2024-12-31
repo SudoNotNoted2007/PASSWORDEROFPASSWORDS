@@ -84,6 +84,14 @@ int main()
             else {
                 std::cerr << "YO, A MAJOR FILE [[HEHMAYBETHISISIT.txt]] FAILED TO OPEN. MAYBE REOPEN THE PROGRAM?!?!?!?" << std::endl;
             }
+            std::ofstream file5(dirPath + "\\HEHMOREFILES.txt");
+            if (file5.is_open()) {
+                file5 << "I HATE CODING THIS STUPID FILE CREATION THING SO MUCH BUT WHATEVER ITS STILL PRETTY AWESOME SAUCEOME\n" << "HEH! YOU SEEM PRETTY COOL FOR LISTENING, THE PASSWORD IS 'supercoolwords'";
+                file5.close();
+            }
+            else {
+                std::cerr << "YO, A MAJOR FILE [[HEHMAYBETHISISIT.txt]] FAILED TO OPEN. MAYBE REOPEN THE PROGRAM?!?!?!?" << std::endl;
+            }
         }
         else {
             std::cerr << "Failed to create directory." << std::endl;
