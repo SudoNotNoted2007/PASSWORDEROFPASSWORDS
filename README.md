@@ -1,5 +1,5 @@
 # PassworderOfPasswords
-This program is sadly only compatible with Windows 10/11 (Currently as of 12/19/2024, it has not been tested on Windows 11)
+This program is sadly only compatible with Windows 10/11 (Currently as of 12/19/2024, it has not been tested on Windows 10)
 
 ![image](https://github.com/user-attachments/assets/b8aadcc1-f684-4b2b-a275-b987fb1a607a)
 
